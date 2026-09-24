@@ -89,24 +89,28 @@ const els = {
   checkin: document.querySelector("#checkin"), checkout: document.querySelector("#checkout")
 };
 
-function bookingUrl(base, provider) {
+function lodgingUrl(base, provider) {
+  const url = new URL(base);
   if (provider === "booking") {
-    const url = new URL(base);
     url.searchParams.set("checkin", els.checkin.value);
     url.searchParams.set("checkout", els.checkout.value);
     url.searchParams.set("group_adults", "1");
     url.searchParams.set("no_rooms", "1");
-    return url.toString();
+  } else {
+    url.searchParams.set("chkin", els.checkin.value);
+    url.searchParams.set("chkout", els.checkout.value);
+    url.searchParams.set("useRewards", "false");
+    url.searchParams.set("rm1", "a1");
   }
-  return base;
+  return url.toString();
 }
 
 function applyLodging(card, lodging) {
   card.querySelector(".city-line").textContent = `Base: ${lodging.baseCity} · ${lodging.transfers === 0 ? "direct" : `${lodging.transfers} major transfer${lodging.transfers > 1 ? "s" : ""}`} · about ${lodging.totalTime} min`;
   card.querySelector(".price").textContent = `$${lodging.price}`;
   card.querySelector(".hostel-note").textContent = lodging.note;
-  card.querySelector(".booking-link").href = bookingUrl(lodging.booking, "booking");
-  card.querySelector(".expedia-link").href = lodging.expedia;
+  card.querySelector(".booking-link").href = lodgingUrl(lodging.booking, "booking");
+  card.querySelector(".expedia-link").href = lodgingUrl(lodging.expedia, "expedia");
   const rail = card.querySelector(".route-rail");
   rail.replaceChildren();
   lodging.steps.forEach(([label, mode, minutes]) => {
