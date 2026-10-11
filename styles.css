@@ -7,6 +7,7 @@
   --line: #cac8c0;
   --muted: #666760;
   --green: #c7ff5e;
+  --yellow: #ffd84d;
 }
 
 * { box-sizing: border-box; }
@@ -100,7 +101,7 @@ legend { width: 100%; font-weight: 800; font-size: .82rem; text-transform: upper
 .badges { display: flex; gap: 6px; margin-bottom: 12px; }
 .badges span { padding: 3px 7px; border: 1px solid var(--ink); font-size: .66rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 .pass-badge.epic { color: var(--white); background: var(--blue); border-color: var(--blue); }
-.pass-badge.ikon { color: var(--ink); background: var(--green); }
+.pass-badge.ikon { color: var(--ink); background: var(--yellow); border-color: var(--ink); }
 .state-badge { background: #e9e7df; }
 .resort-name { font-size: 1.72rem; line-height: 1; letter-spacing: -.045em; margin: 0 0 8px; }
 .city-line { margin: 0; color: var(--muted); font-size: .86rem; }
