@@ -7,7 +7,7 @@ const routes = [
       name: "Park City Hostel", baseCity: "Park City", price: 55, note: "Booking sample: $55 per bed before tax",
       booking: "https://www.booking.com/hotel/us/park-city-hostel.html", expedia: "https://www.expedia.com/Park-City-Hostels.d602285-aaHostels.Travel-Guide-Accommodation",
       transfers: 0, totalTime: 20,
-      steps: [["Hostel → nearest Park City Transit stop", "Walk", 5], ["Transit stop → Mountain Village", "Park City Transit · free", 15]]
+      steps: [["Hostel → nearest Park City Transit stop", "Walk", 5], ["Transit stop → Mountain Village", "Park City Transit", 15, "Free"]]
     }]
   },
   {
@@ -15,8 +15,8 @@ const routes = [
     sources: [["Bustang official", "https://www.codot.gov/travel/bustang"], ["Summit Stage schedules", "https://www.summitcountyco.gov/360/Bus-Schedule"]],
     note: "The Silverthorne option is the shorter daily commute. The Denver option is much longer but can be cheaper on selected dorm dates. I-70 delays are common on weekends.",
     lodgings: [
-      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 2, totalTime: 65, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Frisco", "Summit Stage · free", 20], ["Frisco → Breckenridge", "Summit Stage · free", 40]] },
-      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 146, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95], ["Frisco → Breckenridge", "Summit Stage · free", 40]] }
+      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 2, totalTime: 65, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Frisco", "Summit Stage", 20, "Free"], ["Frisco → Breckenridge", "Summit Stage", 40, "Free"]] },
+      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 146, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95, "From $12 one way"], ["Frisco → Breckenridge", "Summit Stage", 40, "Free"]] }
     ]
   },
   {
@@ -24,8 +24,8 @@ const routes = [
     sources: [["Bustang official", "https://www.codot.gov/travel/bustang"], ["Summit Stage schedules", "https://www.summitcountyco.gov/360/Bus-Schedule"], ["Keystone transportation", "https://www.keystoneresort.com/explore-the-resort/about-the-resort/getting-here.aspx"]],
     note: "Silverthorne gives the shortest commute. Seasonal Summit Stage times can change; confirm the last return bus.",
     lodgings: [
-      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 1, totalTime: 55, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Dillon → Keystone", "Summit Stage · free", 50]] },
-      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 156, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95], ["Frisco → Keystone", "Summit Stage · free", 50]] }
+      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 1, totalTime: 55, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Dillon → Keystone", "Summit Stage", 50, "Free"]] },
+      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 156, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95, "From $12 one way"], ["Frisco → Keystone", "Summit Stage", 50, "Free"]] }
     ]
   },
   {
@@ -33,51 +33,51 @@ const routes = [
     sources: [["Bustang official", "https://www.codot.gov/travel/bustang"], ["Summit Stage schedules", "https://www.summitcountyco.gov/360/Bus-Schedule"], ["Ikon 26/27 access", "https://www.ikonpass.com/en/compare-passes"]],
     note: "Both options transfer at Frisco. The Silverthorne stay is far more practical for daily skiing.",
     lodgings: [
-      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 2, totalTime: 50, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Frisco", "Summit Stage · free", 20], ["Frisco → Copper Mountain", "Summit Stage · free", 25]] },
-      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 131, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95], ["Frisco → Copper Mountain", "Summit Stage · free", 25]] }
+      { name: "The Block Hotel & Commons", baseCity: "Silverthorne", price: 59, note: "Formerly The Pad · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/the-pad-silverthorne.html", expedia: "https://www.expedia.com/Silverthorne-Hotels-The-Block-Hotel-Commons.h73255177.Hotel-Information", transfers: 2, totalTime: 50, steps: [["The Block → Silverthorne transit stop", "Walk", 5], ["Silverthorne → Frisco", "Summit Stage", 20, "Free"], ["Frisco → Copper Mountain", "Summit Stage", 25, "Free"]] },
+      { name: "Hostel Fish", baseCity: "Denver", price: 50, note: "Booking sampled $50 per dorm bed; Expedia varies", booking: "https://www.booking.com/hotel/us/hostel-fish-denver2.html", expedia: "https://www.expedia.com/Denver-Hotels-Hostel-Fish.h11918121.Hotel-Information", transfers: 2, totalTime: 131, steps: [["Hostel Fish → Union Station", "Walk", 11], ["Union Station → Frisco", "Bustang / Pegasus", 95, "From $12 one way"], ["Frisco → Copper Mountain", "Summit Stage", 25, "Free"]] }
     ]
   },
   {
     name: "Alta Ski Area", pass: "Ikon", state: "UT", price: 54, ease: 4, transfers: 2, freeLocal: false,
     sources: [["UTA Ski Service", "https://www.rideuta.com/Rider-Info/Ski-Service"], ["Ikon Alta/Snowbird rules", "https://www.ikonpass.com/en/how-to-use-your-ikon-pass"]],
     note: "UTA Ski Bus costs $5 each way, or use an eligible Ikon Pass as fare. Alta requires the full Ikon Pass.",
-    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Booking sample: $54 per bed before tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 87, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30], ["Transfer point → Alta", "UTA 994 / Canyon Service", 45]] }]
+    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Booking sample: $54 per bed before tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 87, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30, "$2.50 one way"], ["Transfer point → Alta", "UTA 994 / Canyon Service", 45, "$5 one way · eligible Ikon included"]] }]
   },
   {
     name: "Snowbird", pass: "Ikon", state: "UT", price: 54, ease: 4, transfers: 2, freeLocal: false,
     sources: [["UTA Ski Service", "https://www.rideuta.com/Rider-Info/Ski-Service"], ["Ikon 26/27 access", "https://www.ikonpass.com/en/compare-passes"]],
     note: "UTA 994 serves Snowbird and Alta for $5 each way. Eligible Ikon passes can be tapped as fare.",
-    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Recent Expedia sample: $52 including tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 82, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30], ["Transfer point → Snowbird", "UTA 994 / Canyon Service", 40]] }]
+    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Recent Expedia sample: $52 including tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 82, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30, "$2.50 one way"], ["Transfer point → Snowbird", "UTA 994 / Canyon Service", 40, "$5 one way · eligible Ikon included"]] }]
   },
   {
     name: "Brighton", pass: "Ikon", state: "UT", price: 54, ease: 4, transfers: 2, freeLocal: false,
     sources: [["UTA Ski Service", "https://www.rideuta.com/Rider-Info/Ski-Service"]],
     note: "UTA 972 serves Solitude and Brighton. Fare is $5 each way, or tap an eligible Ikon Pass.",
-    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Booking sample: $54 per bed before tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 92, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30], ["Transfer point → Brighton", "UTA 972", 50]] }]
+    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Booking sample: $54 per bed before tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 92, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30, "$2.50 one way"], ["Transfer point → Brighton", "UTA 972", 50, "$5 one way · eligible Ikon included"]] }]
   },
   {
     name: "Solitude", pass: "Ikon", state: "UT", price: 54, ease: 4, transfers: 2, freeLocal: false,
     sources: [["UTA Ski Service", "https://www.rideuta.com/Rider-Info/Ski-Service"], ["Ikon 26/27 access", "https://www.ikonpass.com/en/shop-passes/ikon-pass"]],
     note: "UTA 972 travels through Big Cottonwood Canyon. Verify blackout dates for your Ikon product.",
-    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Recent Expedia sample: $52 including tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 82, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30], ["Transfer point → Solitude", "UTA 972", 40]] }]
+    lodgings: [{ name: "Bposhtels SLC", baseCity: "Salt Lake City", price: 54, note: "Recent Expedia sample: $52 including tax", booking: "https://www.booking.com/hotel/us/bposhtels-slc.html", expedia: "https://www.expedia.com/Salt-Lake-City-Hotels-Bposhtels-SLC.h100559796.Hotel-Information", transfers: 2, totalTime: 82, steps: [["Bposhtels → 900 South Station", "Walk", 12], ["900 South → canyon transfer", "TRAX / UTA", 30, "$2.50 one way"], ["Transfer point → Solitude", "UTA 972", 40, "$5 one way · eligible Ikon included"]] }]
   },
   {
     name: "Mammoth Mountain", pass: "Ikon", state: "CA", price: 58, ease: 5, transfers: 0, freeLocal: true,
     sources: [["Mammoth winter transit", "https://www.visitmammoth.com/travel-info/getting-around/winter-transit/"], ["Regional transportation", "https://www.visitmammoth.com/travel-info/regional-transportation-and-mammoth-lakes/"]],
     note: "One of the cleanest hostel-plus-free-shuttle combinations. Regional arrival buses are infrequent, so lock in arrival and departure days first.",
-    lodgings: [{ name: "Moderne Hostel", baseCity: "Mammoth Lakes", price: 58, note: "Booking sample: $58 per bed; Expedia often exceeds $60", booking: "https://www.booking.com/hotel/us/moderne-hostel.html", expedia: "https://www.expedia.com/Mammoth-Lakes-Hotels-Moderne-Hostel.h11745889.Hotel-Information", transfers: 0, totalTime: 30, steps: [["Moderne Hostel → Main Street stop", "Walk", 5], ["Main Street → Main Lodge", "Red Line · free", 25]] }]
+    lodgings: [{ name: "Moderne Hostel", baseCity: "Mammoth Lakes", price: 58, note: "Booking sample: $58 per bed; Expedia often exceeds $60", booking: "https://www.booking.com/hotel/us/moderne-hostel.html", expedia: "https://www.expedia.com/Mammoth-Lakes-Hotels-Moderne-Hostel.h11745889.Hotel-Information", transfers: 0, totalTime: 30, steps: [["Moderne Hostel → Main Street stop", "Walk", 5], ["Main Street → Main Lodge", "Red Line", 25, "Free"]] }]
   },
   {
     name: "Mt. Bachelor", pass: "Ikon", state: "OR", price: 58, ease: 5, transfers: 0, freeLocal: false,
     sources: [["CET Mt. Bachelor Ski Bus", "https://cascadeseasttransit.com/ride/mt-bachelor-winter/"]],
     note: "The hostel is almost across the street from Hawthorne Station. A separate CET ticket is required.",
-    lodgings: [{ name: "Bunk + Brew Historic Lucas House", baseCity: "Bend", price: 58, note: "Listed on both platforms · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/bunk-brew-historic-lucas-house.html", expedia: "https://www.expedia.com/Bend-Hotels-Bunk-Brew-Historic-Lucas-House.h20065990.Hotel-Information", transfers: 0, totalTime: 42, steps: [["Bunk + Brew → Hawthorne Station", "Walk", 2], ["Hawthorne Station → Mt. Bachelor", "CET Ski Bus · direct", 40]] }]
+    lodgings: [{ name: "Bunk + Brew Historic Lucas House", baseCity: "Bend", price: 58, note: "Listed on both platforms · dorm target ≤ $60", booking: "https://www.booking.com/hotel/us/bunk-brew-historic-lucas-house.html", expedia: "https://www.expedia.com/Bend-Hotels-Bunk-Brew-Historic-Lucas-House.h20065990.Hotel-Information", transfers: 0, totalTime: 42, steps: [["Bunk + Brew → Hawthorne Station", "Walk", 2], ["Hawthorne Station → Mt. Bachelor", "CET Ski Bus · direct", 40, "$7 one way · $12 round trip"]] }]
   },
   {
     name: "Jackson Hole Mountain Resort", pass: "Ikon", state: "WY", price: 57, ease: 5, transfers: 0, freeLocal: false,
     sources: [["START Bus schedules", "https://www.jacksonwy.gov/404/Maps-Schedules"], ["Teton Village transit", "https://tetonvillagewy.gov/visitors/parking-shuttles-buses/"], ["Ikon destination", "https://www.ikonpass.com/en/destinations/jackson-hole-mountain-resort"]],
     note: "START Bus runs between downtown Jackson and Teton Village. Winter traffic can stretch the ride; confirm the current timetable and last return bus.",
-    lodgings: [{ name: "Cache House", baseCity: "Jackson", price: 57, note: "Selected-date dorm target · highly variable; add the nightly property fee before comparing", booking: "https://www.booking.com/hotel/us/cache-house.html", expedia: "https://www.expedia.com/Jackson-Hole-Hotels-Cache-House.h45027224.Hotel-Information", transfers: 0, totalTime: 45, steps: [["Cache House → downtown START stop", "Walk", 5], ["Downtown Jackson → Teton Village", "START Bus · direct", 40]] }]
+    lodgings: [{ name: "Cache House", baseCity: "Jackson", price: 57, note: "Selected-date dorm target · highly variable; add the nightly property fee before comparing", booking: "https://www.booking.com/hotel/us/cache-house.html", expedia: "https://www.expedia.com/Jackson-Hole-Hotels-Cache-House.h45027224.Hotel-Information", transfers: 0, totalTime: 45, steps: [["Cache House → downtown START stop", "Walk", 5], ["Downtown Jackson → Teton Village", "START Bus · direct", 40, "$3 one way"]] }]
   }
 ];
 
@@ -113,10 +113,10 @@ function applyLodging(card, lodging) {
   card.querySelector(".expedia-link").href = lodgingUrl(lodging.expedia, "expedia");
   const rail = card.querySelector(".route-rail");
   rail.replaceChildren();
-  lodging.steps.forEach(([label, mode, minutes]) => {
+  lodging.steps.forEach(([label, mode, minutes, fare]) => {
     const step = document.createElement("div");
     step.className = "route-step";
-    step.innerHTML = `<span class="dot"></span><strong>${label}</strong><small>${mode} · ${minutes} min</small>`;
+    step.innerHTML = `<span class="dot"></span><strong>${label}</strong><small>${mode} · ${minutes} min${fare ? ` <b class="fare-tag">${fare}</b>` : ""}</small>`;
     rail.append(step);
   });
 }
@@ -150,6 +150,7 @@ function render() {
 
     const name = card.querySelector(".hostel-name");
     const select = card.querySelector(".hostel-select");
+    card.querySelector(".stay-label").textContent = eligible.length > 1 ? `Stay here · ${eligible.length} options` : "Stay here";
     if (eligible.length > 1) {
       name.hidden = true;
       select.hidden = false;
