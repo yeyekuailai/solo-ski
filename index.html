@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="A car-free trip finder for U.S. Epic and Ikon resorts, with transit routes and hostel candidates under $60." />
+  <meta name="description" content="Compare car-free U.S. ski trips using reference lodging costs, real transit fares, commute time, and official timetable links." />
   <title>Solo Ski | Car-Free U.S. Ski Trips</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +23,12 @@
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">SOLO · NO CAR · UNDER $60</p>
+        <p class="eyebrow">SOLO · NO CAR · ROUTE-AWARE</p>
         <h1 id="hero-title">No car.<br><em>Still first chair.</em></h1>
-        <p class="intro">Find U.S. Epic and Ikon resorts you can reach by public transit, then compare hostel rates on Booking and Expedia.</p>
+        <p class="intro">Compare the whole plan—not just the bed. Solo Ski combines a lodging reference, daily transit fare, commute time, transfers, and timetable confidence.</p>
       </div>
       <div class="hero-photo" role="img" aria-label="UTA ski bus arriving in the mountains">
-        <div class="photo-note"><span>ROUTE SAMPLE</span><strong>UTA 994 → ALTA</strong></div>
+        <div class="photo-note"><span>COMPARE THE WHOLE DAY</span><strong>BED + BUS + TIME</strong></div>
         <a class="photo-credit" href="https://www.skiutah.com/blog/authors/erika/planning-a-car-free-ski-vacation" target="_blank" rel="noreferrer">Photo / Ski Utah ↗</a>
       </div>
     </section>
@@ -80,18 +80,25 @@
 
           <div class="truth-box">
             <span class="pulse"></span>
-            <p><strong>Rates are not live inventory.</strong><br>Results stay capped at a $60 dorm target. Recheck both platforms for your dates. Travel times are typical scheduled minutes and exclude waits, traffic, and storm delays.</p>
+            <p><strong>Reference prices are not live quotes.</strong><br>The date fields only update Booking and Expedia searches and the timetable date check. Card prices remain fixed comparison samples until you open a booking site. Transit data checked Oct 11, 2026.</p>
           </div>
         </div>
       </details>
 
       <div class="results-panel">
+        <div class="quick-filters" aria-label="Quick filters">
+          <button class="quick-chip" type="button" data-quick="direct" aria-pressed="false">Direct only</button>
+          <button class="quick-chip" type="button" data-quick="free" aria-pressed="false">Free transit</button>
+          <button class="quick-chip" type="button" data-quick="short" aria-pressed="false">≤ 60 min</button>
+          <button class="quick-chip" type="button" data-quick="verified" aria-pressed="false">26/27 timetable</button>
+        </div>
         <div class="results-head">
-          <div><span id="resultCount">0</span> workable routes</div>
+          <div><strong><span id="resultCount">0</span> workable routes</strong><small id="tripContext"></small></div>
           <label>Sort
             <select id="sortBy">
-              <option value="ease">Easiest first</option>
-              <option value="price">Lowest bed rate</option>
+              <option value="score">Best plan score</option>
+              <option value="combined">Lowest bed + transit</option>
+              <option value="time">Shortest commute</option>
               <option value="transfer">Fewest transfers</option>
             </select>
           </label>
@@ -120,19 +127,37 @@
           <h2 class="resort-name"></h2>
           <p class="city-line"></p>
         </div>
-        <div class="price-block"><small>Dorm target</small><strong class="price"></strong><span>/ night</span></div>
+        <div class="score-block"><small>Plan score</small><strong class="plan-score"></strong><span>/ 100</span></div>
       </div>
-      <div class="route-rail"></div>
+      <div class="date-alert"></div>
+      <div class="compare-strip">
+        <div><small>Reference bed</small><strong class="price"></strong><span>/ night · not live</span></div>
+        <div><small>Transit round trip</small><strong class="transit-cost"></strong><span class="transit-note"></span></div>
+        <div class="combined-metric"><small>Bed + transit</small><strong class="combined-cost"></strong><span>/ ski day reference</span></div>
+      </div>
+      <div class="trip-metrics">
+        <div><small>One way</small><strong class="commute-time"></strong></div>
+        <div><small>Transfers</small><strong class="transfer-count"></strong></div>
+        <div><small>First uphill</small><strong class="first-up"></strong></div>
+        <div><small>Last downhill</small><strong class="last-down"></strong></div>
+      </div>
+      <div class="schedule-row">
+        <span class="schedule-status"></span>
+        <a class="timetable-link" target="_blank" rel="noreferrer">Official timetable ↗</a>
+      </div>
       <div class="hostel-row">
         <div class="hostel-copy"><small class="stay-label">Stay here</small><strong class="hostel-name"></strong><select class="hostel-select" aria-label="Choose a hostel" hidden></select><span class="hostel-note"></span></div>
         <div class="booking-actions">
-          <a class="booking-link" target="_blank" rel="noreferrer">Booking ↗</a>
-          <a class="expedia-link" target="_blank" rel="noreferrer">Expedia ↗</a>
+          <a class="booking-link" target="_blank" rel="noreferrer">Check Booking ↗</a>
+          <a class="expedia-link" target="_blank" rel="noreferrer">Check Expedia ↗</a>
         </div>
       </div>
       <details>
-        <summary>Route notes and verification links <span>＋</span></summary>
+        <summary>See route steps, assumptions, and sources <span>＋</span></summary>
         <div class="detail-body">
+          <div class="route-rail"></div>
+          <p class="trip-total"></p>
+          <p class="score-explainer"><strong>Score weights:</strong> combined daily cost 45 · one-way commute 35 · transfers 12 · timetable confidence 8.</p>
           <p class="detail-note"></p>
           <div class="source-links"></div>
         </div>
@@ -140,6 +165,6 @@
     </article>
   </template>
 
-  <script src="./app.js"></script>
+  <script src="./app-v2.js"></script>
 </body>
 </html>
