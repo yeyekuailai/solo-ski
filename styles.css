@@ -163,11 +163,22 @@ summary::-webkit-details-marker { display: none; }
 .resort-card details[open] summary > span { transform: rotate(45deg); }
 .detail-body { padding: 0 22px 20px; font-size: .78rem; color: #494b47; }
 .detail-body .route-rail { margin: 0 -22px 16px; }
-.score-explainer { margin: 0 0 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .detail-note { margin: 0 0 12px; }
 .source-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .source-links a { font-size: .7rem; color: var(--blue); text-underline-offset: 3px; }
 .empty { padding: 70px 20px; text-align: center; border: 1px dashed var(--ink); margin-top: 22px; }
+.score-methodology-wrap { padding: 0 4vw 42px; }
+.score-methodology { max-width: 1260px; margin: 0 auto; border: 1px solid var(--ink); background: var(--white); }
+.score-methodology > summary { padding: 17px 20px; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+.score-methodology[open] > summary { border-bottom: 1px solid var(--ink); }
+.score-methodology[open] > summary span { transform: rotate(45deg); }
+.score-methodology-body { padding: 20px; font-size: .82rem; color: #494b47; }
+.score-methodology-body p { margin: 0; max-width: 820px; }
+.score-methodology-body ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; margin: 18px 0; padding: 1px; list-style: none; background: var(--line); }
+.score-methodology-body li { min-height: 108px; padding: 14px; background: var(--white); }
+.score-methodology-body li strong, .score-methodology-body li span { display: block; }
+.score-methodology-body li strong { margin-bottom: 8px; color: var(--ink); }
+.score-methodology-body li span { line-height: 1.45; }
 
 footer { background: var(--ink); color: var(--white); padding: 38px 4vw; display: flex; justify-content: space-between; gap: 30px; }
 footer p { margin: 6px 0 0; color: #a8aaa7; font-size: .8rem; max-width: 520px; }
@@ -192,6 +203,7 @@ footer p { margin: 6px 0 0; color: #a8aaa7; font-size: .8rem; max-width: 520px; 
   .truth-box { margin-top: 0; }
   .compare-strip { grid-template-columns: 1fr 1fr; }
   .trip-metrics { grid-template-columns: minmax(96px, .55fr) minmax(0, 2fr); }
+  .score-methodology-body ul { grid-template-columns: 1fr 1fr; }
   footer { flex-direction: column; }
 }
 @media (max-width: 500px) {
@@ -209,6 +221,9 @@ footer p { margin: 6px 0 0; color: #a8aaa7; font-size: .8rem; max-width: 520px; 
   .results-head { align-items: flex-end; gap: 14px; }
   .results-head small { max-width: 220px; }
   .schedule-row { align-items: flex-start; flex-direction: column; }
+  .score-methodology-wrap { padding-bottom: 28px; }
+  .score-methodology-body ul { grid-template-columns: 1fr; }
+  .score-methodology-body li { min-height: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
