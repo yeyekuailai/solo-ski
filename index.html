@@ -97,7 +97,8 @@
           <label>Sort
             <select id="sortBy">
               <option value="score">Best plan score</option>
-              <option value="combined">Lowest bed + transit</option>
+              <option value="bed">Lowest bed reference</option>
+              <option value="transit">Lowest transit cost</option>
               <option value="time">Shortest commute</option>
               <option value="transfer">Fewest transfers</option>
             </select>
@@ -133,7 +134,6 @@
       <div class="compare-strip">
         <div><small>Reference bed</small><strong class="price"></strong><span>/ night · not live</span></div>
         <div><small>Transit round trip</small><strong class="transit-cost"></strong><span class="transit-note"></span></div>
-        <div class="combined-metric"><small>Bed + transit</small><strong class="combined-cost"></strong><span>/ ski day reference</span></div>
       </div>
       <div class="trip-metrics">
         <div><small>One way</small><strong class="commute-time"></strong></div>
@@ -156,8 +156,7 @@
         <summary>See route steps, assumptions, and sources <span>＋</span></summary>
         <div class="detail-body">
           <div class="route-rail"></div>
-          <p class="trip-total"></p>
-          <p class="score-explainer"><strong>Score weights:</strong> combined daily cost 45 · one-way commute 35 · transfers 12 · timetable confidence 8.</p>
+          <p class="score-explainer"><strong>Plan score:</strong> every listed plan starts at 70 because it passes Solo Ski's car-free and lodging-reference criteria. Add up to 30 points: bed 10 ($45 or less earns 10; $60 earns 0) · transit 6 (free earns 6; $24 earns 0) · commute 7 (30 minutes or less earns 7; 180 minutes earns 0) · transfers 4 (direct 4; one transfer 2; two or more 0) · timetable 3 (verified 26/27 schedule 3; current published service 2; prior or pending 0). Prices stay separate and are never added on the card.</p>
           <p class="detail-note"></p>
           <div class="source-links"></div>
         </div>

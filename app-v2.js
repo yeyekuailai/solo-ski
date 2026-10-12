@@ -86,14 +86,14 @@ const els = {
   checkin: document.querySelector("#checkin"), checkout: document.querySelector("#checkout"), tripContext: document.querySelector("#tripContext"),
 };
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-const combinedDaily = lodging => lodging.price + lodging.dailyTransit;
-const schedulePoints = { verified: 8, current: 6, prior: 3, pending: 0 };
+const schedulePoints = { verified: 3, current: 2, prior: 0, pending: 0 };
 
 function planScore(lodging) {
-  const cost = clamp(45 - (combinedDaily(lodging) - 45) * 1.15, 5, 45);
-  const commute = clamp(35 - Math.max(0, lodging.totalTime - 20) * 0.28, 0, 35);
-  const transfers = [12, 8, 4][Math.min(lodging.transfers, 2)];
-  return Math.round(cost + commute + transfers + schedulePoints[lodging.schedule.confidence]);
+  const bed = clamp((60 - lodging.price) / 15 * 10, 0, 10);
+  const transit = clamp(6 - lodging.dailyTransit / 4, 0, 6);
+  const commute = clamp(7 - Math.max(0, lodging.totalTime - 30) / 150 * 7, 0, 7);
+  const transfers = [4, 2, 0][Math.min(lodging.transfers, 2)];
+  return Math.round(70 + bed + transit + commute + transfers + schedulePoints[lodging.schedule.confidence]);
 }
 
 function nightsSelected() {
@@ -131,7 +131,6 @@ function dateMessage(schedule) {
 
 function applyLodging(card, lodging) {
   const score = planScore(lodging);
-  const nights = nightsSelected();
   const schedule = lodging.schedule;
   const dateInfo = dateMessage(schedule);
   card.querySelector(".city-line").textContent = `Base: ${lodging.baseCity}`;
@@ -139,7 +138,6 @@ function applyLodging(card, lodging) {
   card.querySelector(".price").textContent = `$${lodging.price}`;
   card.querySelector(".transit-cost").textContent = lodging.dailyTransit === 0 ? "Free" : `$${lodging.dailyTransit}`;
   card.querySelector(".transit-note").textContent = lodging.dailyTransit === 0 ? "" : lodging.fareNote;
-  card.querySelector(".combined-cost").textContent = `$${combinedDaily(lodging)}`;
   card.querySelector(".commute-time").textContent = `${lodging.totalTime} min`;
   card.querySelector(".transfer-count").textContent = lodging.transfers === 0 ? "Direct" : String(lodging.transfers);
   card.querySelector(".first-up").textContent = schedule.firstUp;
@@ -154,7 +152,6 @@ function applyLodging(card, lodging) {
   card.querySelector(".hostel-note").textContent = `${lodging.priceNote}. Reference only—not live inventory.`;
   card.querySelector(".booking-link").href = lodgingUrl(lodging.booking, "booking");
   card.querySelector(".expedia-link").href = lodgingUrl(lodging.expedia, "expedia");
-  card.querySelector(".trip-total").innerHTML = `<strong>Selected-trip reference:</strong> $${lodging.price * nights + lodging.dailyTransit * nights} = $${lodging.price} × ${nights} night${nights === 1 ? "" : "s"} + $${lodging.dailyTransit} × ${nights} ski-day commute${nights === 1 ? "" : "s"}. This is a comparison model, not a quote.`;
   const rail = card.querySelector(".route-rail");
   rail.replaceChildren();
   lodging.steps.forEach(([label, mode, minutes, fare]) => {
@@ -165,7 +162,7 @@ function applyLodging(card, lodging) {
   });
 }
 
-const sortedLodgings = item => [...item.lodgings].sort((a, b) => planScore(b) - planScore(a) || combinedDaily(a) - combinedDaily(b));
+const sortedLodgings = item => [...item.lodgings].sort((a, b) => planScore(b) - planScore(a) || a.price - b.price || a.dailyTransit - b.dailyTransit);
 function passesQuickFilters(lodging) {
   if (quickFilters.has("direct") && lodging.transfers !== 0) return false;
   if (quickFilters.has("free") && lodging.dailyTransit !== 0) return false;
@@ -185,10 +182,11 @@ function render() {
   data.sort((a, b) => {
     const left = a.visibleLodgings[0];
     const right = b.visibleLodgings[0];
-    if (els.sort.value === "combined") return combinedDaily(left) - combinedDaily(right) || planScore(right) - planScore(left);
-    if (els.sort.value === "time") return left.totalTime - right.totalTime || combinedDaily(left) - combinedDaily(right);
+    if (els.sort.value === "bed") return left.price - right.price || planScore(right) - planScore(left);
+    if (els.sort.value === "transit") return left.dailyTransit - right.dailyTransit || planScore(right) - planScore(left);
+    if (els.sort.value === "time") return left.totalTime - right.totalTime || left.price - right.price;
     if (els.sort.value === "transfer") return left.transfers - right.transfers || left.totalTime - right.totalTime;
-    return planScore(right) - planScore(left) || combinedDaily(left) - combinedDaily(right);
+    return planScore(right) - planScore(left) || left.price - right.price || left.dailyTransit - right.dailyTransit;
   });
   els.results.replaceChildren();
   data.forEach(item => {
@@ -207,7 +205,7 @@ function render() {
     if (lodgings.length > 1) {
       name.hidden = true;
       select.hidden = false;
-      lodgings.forEach((lodging, index) => select.add(new Option(`${lodging.name} · score ${planScore(lodging)} · $${combinedDaily(lodging)}/day`, String(index))));
+      lodgings.forEach((lodging, index) => select.add(new Option(`${lodging.name} · score ${planScore(lodging)} · bed $${lodging.price} · transit ${lodging.dailyTransit === 0 ? "free" : `$${lodging.dailyTransit}`}`, String(index))));
       select.addEventListener("change", () => applyLodging(card, lodgings[Number(select.value)]));
     } else name.textContent = lodgings[0].name;
     const sources = card.querySelector(".source-links");

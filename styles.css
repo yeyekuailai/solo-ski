@@ -120,14 +120,12 @@ legend { width: 100%; font-weight: 800; font-size: .82rem; text-transform: upper
 .date-alert[data-tone="ok"] { background: #e2f7d1; }
 .date-alert[data-tone="warn"] { background: #fff0b8; }
 .date-alert[data-tone="neutral"] { background: #e8edf7; }
-.compare-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--ink); }
+.compare-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--ink); }
 .compare-strip > div { padding: 14px 16px; border-right: 1px solid var(--line); display: flex; flex-direction: column; min-width: 0; }
 .compare-strip > div:last-child { border-right: 0; }
 .compare-strip small, .trip-metrics small { color: var(--muted); text-transform: uppercase; font-size: .6rem; letter-spacing: .08em; font-weight: 700; }
 .compare-strip strong { font-size: 1.25rem; line-height: 1.15; }
 .compare-strip span { color: var(--muted); font-size: .65rem; line-height: 1.25; }
-.combined-metric { background: var(--yellow); }
-.combined-metric small, .combined-metric span { color: var(--ink); }
 .trip-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--ink); color: var(--white); }
 .trip-metrics > div { padding: 14px 16px; border-right: 1px solid #363b3f; display: flex; flex-direction: column; }
 .trip-metrics > div:last-child { border-right: 0; }
@@ -162,7 +160,6 @@ summary::-webkit-details-marker { display: none; }
 .resort-card details[open] summary > span { transform: rotate(45deg); }
 .detail-body { padding: 0 22px 20px; font-size: .78rem; color: #494b47; }
 .detail-body .route-rail { margin: 0 -22px 16px; }
-.trip-total { padding: 12px; background: #ece9df; margin: 0 0 12px; }
 .score-explainer { margin: 0 0 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .detail-note { margin: 0 0 12px; }
 .source-links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -191,7 +188,6 @@ footer p { margin: 6px 0 0; color: #a8aaa7; font-size: .8rem; max-width: 520px; 
   .filter-body { grid-template-columns: 1fr; }
   .truth-box { margin-top: 0; }
   .compare-strip { grid-template-columns: 1fr 1fr; }
-  .combined-metric { grid-column: 1 / -1; border-top: 1px solid var(--line); }
   .trip-metrics { grid-template-columns: 1fr 1fr; }
   .trip-metrics > div:nth-child(2) { border-right: 0; }
   .trip-metrics > div:nth-child(-n+2) { border-bottom: 1px solid #363b3f; }
