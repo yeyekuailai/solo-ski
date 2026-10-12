@@ -128,7 +128,7 @@
           <h2 class="resort-name"></h2>
           <p class="city-line"></p>
         </div>
-        <div class="score-block"><small>Plan score</small><strong class="plan-score"></strong><span>/ 100</span></div>
+        <div class="score-block"><small>Score</small><strong class="plan-score"></strong><span>/100</span></div>
       </div>
       <div class="date-alert"></div>
       <div class="compare-strip">
@@ -136,10 +136,15 @@
         <div><small>Transit round trip</small><strong class="transit-cost"></strong><span class="transit-note"></span></div>
       </div>
       <div class="trip-metrics">
-        <div><small>One way</small><strong class="commute-time"></strong></div>
-        <div><small>Transfers</small><strong class="transfer-count"></strong></div>
-        <div><small>First uphill</small><strong class="first-up"></strong></div>
-        <div><small>Last downhill</small><strong class="last-down"></strong></div>
+        <div class="commute-metric"><small>One way</small><strong class="commute-time"></strong></div>
+        <div class="service-metric">
+          <small>Service window</small>
+          <div class="service-values">
+            <span><em>Transfers</em><strong class="transfer-count"></strong></span>
+            <span><em>First uphill</em><strong class="first-up"></strong></span>
+            <span><em>Last downhill</em><strong class="last-down"></strong></span>
+          </div>
+        </div>
       </div>
       <div class="schedule-row">
         <span class="schedule-status"></span>
